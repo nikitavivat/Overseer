@@ -47,7 +47,7 @@ def _load_process(file: str) -> Process:
 
 
 @click.group()
-@click.version_option(package_name="overseer")
+@click.version_option(package_name="overseer-ai")
 @click.option("-v", "--verbose", is_flag=True, help="Enable debug logging.")
 def cli(verbose: bool) -> None:
     """Overseer — reliable multi-agent AI processes."""
