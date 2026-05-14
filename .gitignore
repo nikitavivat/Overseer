@@ -216,3 +216,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Agent documentation
+AGENT.md
+CLAUDE.md
+NOTES.md
+
+# Overseer runtime artifacts
+*.osdb
+overseer.db
+overseer.db-journal
+overseer.db-shm
+overseer.db-wal
+.overseer/

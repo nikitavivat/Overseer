@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Overseer</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="https://unpkg.com/cytoscape@3.30.2/dist/cytoscape.min.js"></script>
+  <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+  <script src="https://unpkg.com/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◆</span>
+      <span class="title">Overseer</span>
+      <span class="process" id="process-name"></span>
+    </div>
+    <div class="actions">
+      <input type="text" id="task-input" placeholder='task: e.g. "Investigate X"' />
+      <button id="start-btn">Start run</button>
+      <span id="status-pill" class="pill idle">idle</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="left">
+      <h3>Runs</h3>
+      <ul id="run-list" class="run-list"></ul>
+    </aside>
+
+    <section class="center">
+      <div id="graph"></div>
+      <div id="legend">
+        <span class="dot pending"></span>pending
+        <span class="dot running"></span>running
+        <span class="dot ok"></span>ok
+        <span class="dot fail"></span>fail
+        <span class="dot blocked"></span>blocked
+      </div>
+    </section>
+
+    <aside class="right" id="right-panel">
+      <h3>State</h3>
+      <div id="state-summary" class="muted">Pick a node to inspect.</div>
+      <h3>Events</h3>
+      <ul id="event-list" class="event-list"></ul>
+    </aside>
+  </main>
+
+  <div class="drawer hidden" id="drawer">
+    <div class="drawer-head">
+      <h2 id="drawer-title">Node</h2>
+      <button id="drawer-close">×</button>
+    </div>
+    <div class="drawer-body">
+      <section>
+        <h4>Status</h4>
+        <div id="drawer-status">—</div>
+      </section>
+      <section>
+        <h4>Latest output</h4>
+        <pre id="drawer-output">—</pre>
+      </section>
+      <section class="hidden">
+        <h4>Last failure</h4>
+        <pre id="drawer-failure" class="failure">—</pre>
+      </section>
+      <section>
+        <h4>Verifier verdict</h4>
+        <div id="drawer-verdict" class="muted">—</div>
+      </section>
+      <section>
+        <h4>Snapshots</h4>
+        <ul id="snapshot-list" class="snap-list"></ul>
+      </section>
+      <section>
+        <h4>Retry with override</h4>
+        <p class="muted">
+          Replace the prompt for the next attempt. Leave empty to retry as-is.
+        </p>
+        <textarea id="override-prompt" rows="6"
+          placeholder="Write a report and make sure to cite evidence."></textarea>
+        <div class="drawer-actions">
+          <button id="retry-btn" class="primary">Retry</button>
+          <button id="skip-btn">Skip</button>
+          <button id="abort-btn" class="danger">Abort run</button>
+        </div>
+        <div id="intervene-result" class="muted"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
