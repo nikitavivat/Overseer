@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "overseer-ai"
-version = "0.1.0"
+version = "0.1.1"
 description = "Reliable multi-agent AI processes with built-in quality control, snapshots, and a live UI."
 readme = "README.md"
 requires-python = ">=3.10"
